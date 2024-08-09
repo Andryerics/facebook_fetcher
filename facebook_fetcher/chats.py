@@ -148,9 +148,9 @@ class Chats:
     return data[0:limit]
 
   def send_text(self, message):
-    if self['blocked']: raise exceptions.FacebookError('Pesan tidak bisa di kirim karena anda telah memblokir akun "%s"!!!' % (self['name']))
-    if self.__send_url is None: raise exceptions.FacebookError('Tidak dapat mengirim pesan kepada %s' % (self.name))
-    if not re.match('^\S',message): raise exceptions.FacebookError('Panjang pesan minimal 1 karakter, dan harus di awali dengan non-white space character!!.')
+    if self['blocked']: raise exceptions.FacebookError('The message cannot be sent because you have blocked the account "%s"!!!' % (self['name']))
+    if self.__send_url is None: raise exceptions.FacebookError('Unable to send message to %s' % (self.name))
+    if not re.match('^\S',message): raise exceptions.FacebookError('The message must be at least 1 character long and start with a non-whitespace character!!.')
 
     message = codecs.decode(codecs.encode(message,'unicode_escape'),'unicode_escape')
 
@@ -161,14 +161,14 @@ class Chats:
 
     if html_res.find('a', href = re.compile('\/home\.php\?rand=\d+')):
       err_div = html_res.find('div', id = 'root')
-      err_msg = ("Terjadi Kesalahan!" if err_div is None else err_div.find('div', class_ = True).get_text(separator = '\n'))
+      err_msg = ("An error occurred!" if err_div is None else err_div.find('div', class_ = True).get_text(separator = '\n'))
       raise exceptions.FacebookError(err_msg)
 
     return res.ok
 
   def send_image(self, file, message = ''):
-    if self['blocked']: raise exceptions.FacebookError('Pesan tidak bisa di kirim karena anda telah memblokir akun "%s"!!!' % (self['name']))
-    if self.__send_url is None: raise exceptions.FacebookError('Tidak dapat mengirim pesan kepada %s' % (self.name))
+    if self['blocked']: raise exceptions.FacebookError('Message cannot be sent because you have blocked the account "%s"!!!' % (self['name']))
+    if self.__send_url is None: raise exceptions.FacebookError('Unable to send message to %s' % (self.name))
 
     message = codecs.decode(codecs.encode(message,'unicode_escape'),'unicode_escape')
     form = self.__res.find('form', action = re.compile('https:\/\/(?:z-upload|upload)\.facebook\.com'))
@@ -187,9 +187,9 @@ class Chats:
     return submit.ok
 
   def send_like_stiker(self):
-    if self.__send_url is None: raise exceptions.FacebookError('Tidak dapat mengirim pesan kepada %s' % (self.name))
+    if self.__send_url is None: raise exceptions.FacebookError('Unable to send message to %s' % (self.name))
 
-    if self['blocked']: raise exceptions.FacebookError('Stiker tidak bisa di kirim karena anda telah memblokir akun "%s"!!!' % (self['name']))
+    if self['blocked']: raise exceptions.FacebookError('Sticker cannot be sent because you have blocked the account "%s"!!!' % (self['name']))
 
     data = self.__data.copy()
     data['like'] = (self.__data_other['like'] if 'like' in self.__data_other.keys() else 'like')
