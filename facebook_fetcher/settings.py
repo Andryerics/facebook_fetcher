@@ -9,7 +9,7 @@ def SetFacebookSite(fbobj, set_to):
   site_list = ['reguler','basic']
   default_head = {'User-Agent':fbobj._session.headers['User-Agent']}
 
-  if set_to not in site_list: raise exceptions.FacebookError('Facebook Site tidak valid!!')
+  if set_to not in site_list: raise exceptions.FacebookError('Facebook site is not valid!!')
 
   try:
     a = fbobj._session.get(fbobj._host + '/settings/site')
@@ -35,7 +35,7 @@ def SetLanguage(fbobj, locale):
   b = bs4(a.text,'html.parser')
   c = b.find('form', action = re.compile('^\/intl\/save_locale\/\?loc=' + locale))
 
-  if c is None: raise exceptions.FacebookError('Locale tidak valid, pastikan locale yang anda massukan sudah benar :)')
+  if c is None: raise exceptions.FacebookError('Locale is not valid. Please ensure the locale you entered is correct. :)')
 
   d = {i.get('name'):i.get('value') for i in c.findAll('input')}
 
@@ -150,3 +150,4 @@ def UpdateProfilePicture(fbobj, photo):
   kirim = utils.upload_photo(requests_session = fbobj._session, upload_url = form['action'], input_file_name = 'pic', file_path = photo, fields = data)
 
   return kirim.ok
+      
