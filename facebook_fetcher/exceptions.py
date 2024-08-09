@@ -1,31 +1,31 @@
 class LoginFailed(Exception):
-  '''Gagal Login Ke akun Facebook'''
+  '''Failed to log in to the Facebook account'''
   pass
 
 class InvalidCookies(Exception):
-  '''Coookie tidak valid'''
+  '''Cookies are invalid'''
   pass
 
 class AccountCheckPoint(Exception):
-  '''Account terkena CheckPoint'''
+  '''Account is under CheckPoint'''
   pass
 
 class AccountTemporaryBanned(Exception):
-  '''Akun Sementara di banned Sementara Oleh om mark'''
+  '''Account temporarily banned by Mark'''
   pass
 
 class AccountDisabled(Exception):
-  '''Akun terkena Banned permanen oleh om Mark'''
+  '''Account permanently banned by Mark'''
   pass
 
 class PageNotFound(Exception):
-  '''Halaman Yang di tuju sudah kadaluarsa / URL tidak valid!'''
+  '''Page is expired / URL is not valid!'''
   pass
 
 class SessionExpired(Exception):
-  '''Sesi sudah kadaluarsa'''
+  '''Session has expired'''
   pass
 
 class FacebookError(Exception):
-  '''ususu'''
+  '''Facebook error'''
   pass
