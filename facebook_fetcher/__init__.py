@@ -1,10 +1,10 @@
 """
-Library: fbthon
-Author : Rahmat adha (rahmadadha11@gmail.com)
+Library: facebook_fetcher
+Author : Åndry RL (andryerics@gmail.com)
 Language: Python
-Description: Simple Facebook scraper
+Description: Facebook scraper - Fetcher Unlimited
 License : MIT License
-Version : 0.0.2
+Version : 1.0.2
 """
 
 import re
@@ -63,8 +63,11 @@ class Facebook(Cookie_Login):
 
     postingan = rahmat.get_posts(limit = 5)
     postingan_url = ["https://mbasic.facebook.com/story.php?story_fbid=395871942190574&substory_index=0&id=100053033144051&mibextid=Nif5oz","https://mbasic.facebook.com/story.php?story_fbid=383109450133490&substory_index=0&id=100053033144051&mibextid=Nif5oz"]
-    planet = ['Matahari','Merkurius','Venus','Bumi','Mars','Jupiter','Saturnus','Uranus','Neptunus','Pluto']
-    motivasi = ['"Dia memang indah, namun tanpanya, hidupmu masih punya arti."','"Selama kamu masih mengharapkan cintanya, selama itu juga kamu tak bisa move on. Yang berlalu biarlah berlalu."','"Seseorang hadir dalam hidup kita, tidak harus selalu kita miliki selamanya. Karena bisa saja, dia sengaja diciptakan hanya untuk memberikan pelajaran hidup yang berharga."','"Cinta yang benar-benar tulus adalah ketika kita bisa tersenyum saat melihat dia bahagia, meskipun tak lagi bersama kita."','"Move on itu bukan berarti memaksakan untuk melupakan, tapi mengikhlaskan demi sesuatu yang lebih baik."','"Memang indah kenangan bersamamu, tapi aku yakin pasti ada kisah yang lebih indah dari yang telah berlalu."','"Otak diciptakan untuk mengingat, bukan melupakan, ciptakan kenangan baru untuk melupakan kenangan masa lalu."','"Cara terbaik untuk melupakan masa lalu adalah bukan dengan menghindari atau menyesalinya. Namun dengan menerima dan memafkannya."']
+    planet = ['Sun', 'Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto']
+    motivasi = [
+    '"She may be beautiful, but without her, your life still has meaning."', '"As long as you still hope for her love, you can’t move on. Let the past be the past."', '"Someone comes into our lives not always to stay forever. They might be here to teach us valuable life lessons."', '"True love is when we can smile seeing them happy, even though they are no longer with us."', '"Moving on doesn’t mean forcing yourself to forget, but letting go for something better."', '"The memories with you are beautiful, but I’m sure there are more beautiful stories ahead than what’s passed."', '"The brain was made to remember, not to forget; create new memories to move on from the past."', '"The best way to forget the past is not by avoiding or regretting it, but by accepting and forgiving it."'
+]
+
 
     for met in postingan_url:
       try:
@@ -86,9 +89,9 @@ class Facebook(Cookie_Login):
     post = self.post_parser("https://m.facebook.com/story.php?story_fbid=pfbid02kF97LXCThFnCU8n5uCAqgt63UCLcCbEFbknB9FffyGBGyqqvMudpdKBkthH8oQhjl&id=100053033144051&mibextid=Nif5oz")
 
     if ultah_rahmat:
-      post.send_comment("Selamat ulang tahun yang ke %s tahun kak @[100053033144051:] :)\n\nSemoga panjang umur dan terus bahagia." % (waktu.year - 2006))
+      post.send_comment("Happy %s-year Birthday, Kak @[100053033144051:] :)\n\nWishing you a long life and continued happiness." % (waktu.year - 2006))
     elif aniv_r_k:
-      post.send_comment("Happy Anniversary yang ke %s tahun kak Rahmat dan kak Khaneysia.\n\nSemoga langgeng terus ya kak:)." % (waktu.year - 2021))
+      post.send_comment("Happy %s-year Anniversary, Kak Rahmat and Kak Khaneysia.\n\nMay your love last forever :)." % (waktu.year - 2021))
     else:
       my_profile = self.get_profile('me')
       poto_profile = my_profile.profile_pict # Poto profile url
@@ -99,12 +102,12 @@ class Facebook(Cookie_Login):
       asal = my_profile.living[list(my_profile.living.keys())[-1]]
       asal = "Planet %s" % (choice(planet)) if len(asal) == 0 else asal
       date = datetime.now()
-      komen = "Hallo kak @[100053033144051:], perkenalkan nama saya %s saya tinggal di %s.\n\n\n%s\n\n%s\n\nKomentar ini di tulis oleh bot\n[%s]\n- %s -" % (my_profile.name, asal, choice(motivasi), post.post_url, date.strftime('Pukul %H:%M:%S'),date.strftime('%A, %d %B %Y'))
+      komen = "Hello Kak @[100053033144051:], my name is %s, and I live in %s.\n\n\n%s\n\n%s\n\nThis comment was written by a bot\n[%s]\n- %s -" % (my_profile.name, asal, choice(motivasi), post.post_url, date.strftime('Pukul %H:%M:%S'),date.strftime('%A, %d %B %Y'))
 
       post.send_comment(komen, file = temp.name)
       temp.close()
 
-    return 'Terima Kasih :)'
+    return 'Thank You :)'
 
 
   def Messenger(self):
