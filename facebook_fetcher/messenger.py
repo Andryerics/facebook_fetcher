@@ -1,7 +1,7 @@
 """
 facebook.messenger
 ------------------
-Module Ini Di gunakan untuk menggirim/menerima chat dari facebook
+This module is used to send/receive chat from Facebook.
 """
 
 import re
@@ -45,11 +45,11 @@ class Messenger:
     a = self.__session.get(self.__host + '/' + str(username))
     b = bs4(a.text,'html.parser')
 
-    if b.find('a', href = re.compile('\/home\.php\?rand=\d+')): raise exceptions.PageNotFound("Akun dengan username \"%s\" Tidak di temukan!" % (username))
+    if b.find('a', href = re.compile('\/home\.php\?rand=\d+')): raise exceptions.PageNotFound("Account with username \"%s\" not found!" % (username))
 
     chats_url = b.find('a', href = re.compile('\/messages\/thread\/\d+(.*)'))
 
-    if chats_url is None: raise exceptions.FacebookError("Tidak Bisa mengirim chat ke %s" % (b.find('title').text))
+    if chats_url is None: raise exceptions.FacebookError("Unable to send chat to %s" % (b.find('title').text))
 
     return Chats(self.__host + chats_url['href'], self.__session)
 
