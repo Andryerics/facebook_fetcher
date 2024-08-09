@@ -1,7 +1,7 @@
 """
 fbthon.login
 --------------
-Module Ini Di gunakan untuk login ke akun Facebook
+This module is used to log in to a Facebook account.
 """
 
 import re
@@ -16,7 +16,7 @@ from http.cookies import SimpleCookie
 
 class Cookie_Login:
 
-  # Gunakan Cookie String Untuk Login Ke Akun #
+  # Use Cookie String to log in to the account #
 
   def __init__(self, cookies, free_facebook = False, headers = {}):
     self.free_facebook = free_facebook
@@ -52,9 +52,9 @@ class Cookie_Login:
       req = self.__session.get(url, allow_redirects = True)
 
     if 'checkpoint' in req.url:
-      raise exceptions.AccountCheckPoint('Akun Anda Terkena Checkpoint')
+      raise exceptions.AccountCheckPoint('Your account is under checkpoint')
     elif 'login.php' in req.url:
-      raise exceptions.InvalidCookies('Cookie Tidak Valid!')
+      raise exceptions.InvalidCookies('Cookie is not valid!')
 
     form_zero = bs4(req.text,'html.parser').find('form', action = re.compile('\/zero\/optin\/write'))
     zero_data = {}
@@ -134,11 +134,10 @@ class Web_Login(Cookie_Login):
 
   def __init__(self, email, password, save_login = True,free_facebook = False, headers = {}):
     """
-
-    email -> Gunakan alamat email pada akun facebook, anda juga bisa menggunakan id akun facebook / username akun facebook sebagai pengganti alamat email
-    password -> Password Akun Facebook anda
-    save_login -> Gunakan True jika ingin menyimpan informasi login
-    free_facebook -> Gunakan True jika ingin menggukan web https://free.facebook.com
+    email -> Use the email address of your Facebook account. You can also use the Facebook account ID or username as a replacement for the email address.
+    password -> Your Facebook account password.
+    save_login -> Use True if you want to save login information.
+    free_facebook -> Use True if you want to use the website https://free.facebook.com.
     headers -> 
 
     """
@@ -178,9 +177,9 @@ class Web_Login(Cookie_Login):
     self.submit_res = bs4(self.submit.text,'html.parser')
 
     if 'checkpoint' in self.__session.cookies.get_dict().keys(): 
-      raise exceptions.AccountCheckPoint('Akun Anda Terkena Checkpoint')
+      raise exceptions.AccountCheckPoint('Your account is under checkpoint')
     elif 'c_user' not in self.__session.cookies.get_dict().keys():
-      raise exceptions.LoginFailed('Gagal Login Ke akun, pastikan email atau password anda sudah benar!')
+      raise exceptions.LoginFailed('Failed to log in to the account. Please make sure your email or password is correct.!')
 
     if save_login and 'login/save-device/' in self.submit.url:
       form = self.submit_res.find('form',action = re.compile("/login/\w+"))
