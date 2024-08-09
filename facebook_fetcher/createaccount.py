@@ -36,12 +36,12 @@ class CreateAccount(Cookie_Login):
 
     if err_req is not None and signup_form is None:
       err_req_div = err_req.find('div', attrs = {'class':True})
-      err_req_msg = (err_req_div.get_text(separator = '\n') if err_req_div is not None else "Terjadi kesalahan:(")
+      err_req_msg = (err_req_div.get_text(separator = '\n') if err_req_div is not None else "An error occurred:(")
       raise exceptions.FacebookError(err_req_msg)
 
     signup_data = {i.get('name'):i.get('value') for i in signup_form.findAll('input', attrs = {'type':'hidden'})}
     signup_form_value = signup_form.find('input', attrs = {'name':'sign_up','type':'submit'})
-    if signup_form_value is None: raise exceptions.FacebookError('Untuk Saat ini fitur "CreateAccount" tidak mendukung pada facebook mobile, untuk mengatasi masalah ini coba ganti User-Agent yang sedang anda gunakan :)')
+    if signup_form_value is None: raise exceptions.FacebookError('Currently, the "CreateAccount" feature does not support Facebook mobile. To resolve this issue, try changing the User-Agent you are using. :)')
     signup_data['sign_up'] = signup_form_value.get('value')
     signup_submit = self.__session.post(self.__host + signup_form['action'], data = signup_data)
     signup_response = bs4(signup_submit.text,'html.parser')
@@ -67,8 +67,8 @@ class CreateAccount(Cookie_Login):
     self.register_error = self.register_response.find('div', attrs = {'id':'registration-error'})
 
     if self.register_error is not None: raise exceptions.FacebookError(self.register_error.text)
-    if ('/recover/code/' in self.register_submit.url or 'home.php' in self.register_submit.url) and 'confirmemail' not in self.register_submit.url: raise exceptions.FacebookError("Gagal membuat akun Facebook, sepertinya anda sudah memiliki akun facebook dengan alamat email \"%s\"" % (email))
-    if 'checkpoint' in self.__session.cookies.get_dict().keys() or 'checkpoint' in self.register_submit.url: raise exceptions.AccountCheckPoint('Akun Anda Terkena Checkpoint :(')
+    if ('/recover/code/' in self.register_submit.url or 'home.php' in self.register_submit.url) and 'confirmemail' not in self.register_submit.url: raise exceptions.FacebookError("Failed to create a Facebook account. It seems you already have a Facebook account with this email address \"%s\"" % (email))
+    if 'checkpoint' in self.__session.cookies.get_dict().keys() or 'checkpoint' in self.register_submit.url: raise exceptions.AccountCheckPoint('Your account is under checkpoint :(')
 
     if save_login and 'login/save-device/' in self.register_submit.url:
       savelogin_form = self.register_response.find('form',action = re.compile("/login/\w+"))
@@ -106,7 +106,7 @@ class CreateAccount(Cookie_Login):
 
       if error_confirm is not None:
         err_div = error_confirm.find('div', string = True)
-        err_msg = (err_div.text if err_div is not None else "Kode Verifikasi Salah :(")
+        err_msg = (err_div.text if err_div is not None else "Invalid verification code :(")
 
         raise exceptions.FacebookError(err_msg)
 
@@ -118,7 +118,7 @@ class CreateAccount(Cookie_Login):
 
       return submit_confirm.ok
     else:
-      raise exceptions.FacebookError('Tidak dapat mengkonfirmasi akun :(')
+      raise exceptions.FacebookError('Unable to confirm the account :(')
 
   def resend_code(self):
     submit_resend = self.register_response.find('input', attrs = {'name':False,'class':True, 'type':'submit'})
@@ -132,5 +132,5 @@ class CreateAccount(Cookie_Login):
 
       return resend.ok
     else:
-      raise exceptions.FacebookError('Tidak dapat mengirim ulang kode konfirmasi :(')
+      raise exceptions.FacebookError('Unable to resend the confirmation code :(')
 
