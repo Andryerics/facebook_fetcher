@@ -23,17 +23,17 @@ with open('README.md','r',encoding = 'utf-8') as doc:
   readme = doc.read()
 
 setup(
-  name = 'fbthon',
-  packages = ['fbthon'],
-  version = '0.0.2',
+  name = 'facebook_fetcher',
+  packages = ['facebook_fetcher'],
+  version = '1.0.0',
   license='MIT',
   description = 'Simple Facebook scraper',
   long_description=readme,
   long_description_content_type="text/markdown",
-  author = 'Rahmat adha',
-  author_email = 'rahmadadha11@gmail.com',
-  url = 'https://github.com/MR-X-Junior/fbthon',
-  keywords = ['facebook-scraper', 'facebook-parser', 'facebook-scraper-without-apikey'],
+  author = 'Andryerics',
+  author_email = 'andryerics@gmail.com',
+  url = 'https://github.com/Andryerics/facebook_fetcher',
+  keywords = ['facebook-scraper', 'facebook_fetcher', 'facebook-parser', 'facebook-scraper-without-apikey'],
   python_requires=">=3.7",
   install_requires=[
           'requests_toolbelt',
