@@ -1,0 +1,7 @@
+flask==3.0.3
+requests
+urllib3==1.26.6
+fbthon==0.0.2
+instascrap==1.1
+lxml_html_clean==0.1.1
+blinker==1.8.2
