@@ -31,8 +31,11 @@ Scrape valuable user data for lead generation, research studies, targeted market
 
 # Library Information
 *Author:* [**Åndry RL**](https://facebook.com/Andryerics)\
+*Library:* [**facebook_fetcher**](https://github.com/MR-X-Junior/fbthon)\
 *Library:* [**facebook_fetcher**](https://github.com/Andryerics/facebook_fetcher)\
 *License:* [**MIT License**](https://github.com/Andryerics/facebook_fetcher/LICENSE)\
+*Release:* **09**/08/20**24**\
+*Version:* **0.0.2**
 *Release:* **13**/08/20**24**\
 *Version:* **1.0.3**
 
@@ -41,6 +44,7 @@ Since this library is still in its early version, it is likely to have many erro
 ## Example of How to Use
 
 ```console
+$ python -m pip install facebook_fetcher
 pip install facebook_fetcher
 ```
 
