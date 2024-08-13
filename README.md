@@ -543,9 +543,9 @@ else:
 ![Running the script to create a Facebook account using the fbthon library](https://i.ibb.co/2Sd19Wc/Screenshot-2023-0420-093249.png)
 
 ###### Result
-This is the account created using the fbthon library :)
+This is the account created using the facebook_fetcher library :)
 
-![This is a Facebook account created using the fbthon library](https://i.ibb.co/7K3q3hj/Screenshot-20230420-093826.jpg)
+![This is a Facebook account created using the facebook_fetcher library](https://i.ibb.co/7K3q3hj/Screenshot-20230420-093826.jpg)
 
 #### Optional Parameters
 *(For the `CreateAccount` class)*
@@ -559,11 +559,11 @@ This is the account created using the fbthon library :)
 
 # Installation
 
-**fbthon** is available on PyPi.
+**facebook_fetcher** is available on PyPi.
 
 
 ```console
-$ python -m pip install facebook_fetcher
+python -m pip install facebook_fetcher
 ```
 
-**fbthon** can be installed on Python version 3.7+.
+**facebook_fetcher** can be installed on Python version 3.7+.
