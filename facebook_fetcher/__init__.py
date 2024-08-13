@@ -38,7 +38,7 @@ class Facebook(Cookie_Login):
     self.__session = self._session
     self.__host = self._host
 
-    settings.SetFacebookSite(self, 'basic')
+    # settings.SetFacebookSite(self, 'basic')
 
   def __str__(self):
     return "Facebook : host='%s' cookie='%s'" % (self.__host, self.get_cookie_str())
