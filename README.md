@@ -14,7 +14,7 @@
   </p>
 <p>Maximize your business's potential and gain a competitive edge with our <b>four separate</b> Facebook Scrapers for: <br><b>Profile, Page, Post, All Recent Post and Group (and Video)</b>
 
-Scrape valuable user data for lead generation, research studies, targeted marketing, sentiment analysis, data-driven decision-making, and more. 
+Scrape valuable user data for lead generation, research studies, targeted marketing, sentiment analysis, data-driven decision-making, and more... 
 </p>
 </div>
 
